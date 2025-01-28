@@ -45,7 +45,7 @@ struct ContentView: View {
                 .padding()
                 .sheet(isPresented: $showAddTodoSheet) {
                     VStack {
-                        // Close Button
+        
                         HStack {
                             Spacer()
                             Button(action: {
@@ -58,13 +58,12 @@ struct ContentView: View {
                         }
                         .padding()
 
-                        // Title for adding a new todo
+                       
                         Text("Add New Todo")
                             .font(.title2)
                             .fontWeight(.bold)
                             .padding(.bottom, 20)
-                        
-                        // TextField for entering the todo title
+                    
                         TextField("Enter todo title", text: $newTodoTitle)
                             .padding()
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -72,7 +71,7 @@ struct ContentView: View {
                             .cornerRadius(8)
                             .shadow(radius: 5)
 
-                        // Save Todo Button
+                     
                         Button(action: {
                             guard !newTodoTitle.isEmpty else { return }
                             let newTodo = Todo(id: nil, title: newTodoTitle, isCompleted: false)
@@ -109,7 +108,6 @@ struct ContentView: View {
         }
     }
 
-    // Load Todos from Firestore
     private func loadTodos() {
         firestoreService.fetchTodos { todos, error in
             if let error = error {
@@ -120,23 +118,21 @@ struct ContentView: View {
         }
     }
     
-    // Toggle completion status of a todo
+
     private func toggleCompletionStatus(todo: Todo) {
         var updatedTodo = todo
         updatedTodo.isCompleted.toggle()
         
-        // Update the todo in Firestore
         firestoreService.updateTodo(updatedTodo) { error in
             if let error = error {
                 print("Error updating todo: \(error.localizedDescription)")
             } else {
-                // Reload the todos after update
+
                 loadTodos()
             }
         }
     }
 
-    // Delete Todos
     private func deleteTodos(at offsets: IndexSet) {
         for index in offsets {
             let todo = todos[index]
@@ -146,7 +142,7 @@ struct ContentView: View {
                 if let error = error {
                     print("Error deleting todo: \(error.localizedDescription)")
                 } else {
-                    // Remove the todo from the list
+              
                     todos.remove(at: index)
                 }
             }
