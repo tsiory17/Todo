@@ -13,7 +13,7 @@ struct ContentView: View {
                     ForEach(todos) { todo in
                         HStack {
                             Text(todo.title)
-                                .foregroundColor(todo.isCompleted ? .green : .red) // Change the text color as well
+                                .foregroundColor(todo.isCompleted ? .green : .red) 
                             Spacer()
                             if todo.isCompleted {
                                 Text("✓").foregroundColor(.green)
@@ -22,7 +22,7 @@ struct ContentView: View {
                             }
                         }
                         .padding() // Add padding for better spacing
-                        .background(todo.isCompleted ? Color.green.opacity(0.2) : Color.red.opacity(0.2)) // Apply background color to the whole HStack
+                        .background(todo.isCompleted ? Color.green.opacity(0.2) : Color.red.opacity(0.2)) 
                         .cornerRadius(8)
                         .onTapGesture {
                             toggleCompletionStatus(todo: todo)
